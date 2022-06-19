@@ -1,0 +1,44 @@
+
+.nav{
+  grid-area: n;
+  background-color:  rgb(15, 160, 22);
+  width: 200px;
+  height: 580px;
+  padding: 10px 0 0 15px;
+  }
+  .nav__items{
+    color: white;
+    font-size: 20px;
+    margin-top: 10px;
+    text-decoration: none;
+  }
+  .nav__items:nth-child(5){
+    margin-top: 40px;
+  }
+
+  .nav_items_link{
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+  }
+  
+
+  .nav_items_link:link {
+    color: white;
+}
+
+.nav_items_link:visited {
+  color: rgb(240, 235, 235);
+}
+
+.nav_items_link:focus {
+color: rgb(10, 2, 2);
+}
+
+.nav_items_link:hover {
+  color: black; 
+}
+
+.nav_items_link:active {
+ color: rgb(89, 211, 211);
+}

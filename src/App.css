@@ -1,0 +1,9 @@
+.app-wrapper{
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.wrapper_item_list{
+  display: flex;
+  justify-content: space-between;
+}
