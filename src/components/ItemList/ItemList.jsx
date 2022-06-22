@@ -4,6 +4,11 @@ import Comment from './Comments/Comment';
 import classes from './ItemList.module.css';
 import ItemListInput from './ItemListInput/ItemListInput';
 
+let PostsData = [
+    { id: 1, message: 'Пойду поем' },
+    { id: 2, message: 'теперь поспать' },
+]
+
 const ItemList = () => {
     return (
         <div className="">
@@ -16,8 +21,8 @@ const ItemList = () => {
                 </div>
             </div>
                 <ItemListInput />
-                <Comment comment ='Пойду поем'/>
-                <Comment comment ='теперь поспать'/>
+                <Comment comment ={PostsData[0].message}/>
+                <Comment comment ={PostsData[1].message}/>
         </div>
     )
 }
