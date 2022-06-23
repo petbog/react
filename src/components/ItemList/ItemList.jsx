@@ -8,6 +8,8 @@ let PostsData = [
     { id: 1, message: 'Пойду поем' },
     { id: 2, message: 'теперь поспать' },
 ]
+let Post = PostsData
+.map(p => <Comment comment ={p.message}/> )
 
 const ItemList = () => {
     return (
@@ -21,8 +23,7 @@ const ItemList = () => {
                 </div>
             </div>
                 <ItemListInput />
-                <Comment comment ={PostsData[0].message}/>
-                <Comment comment ={PostsData[1].message}/>
+                {Post}
         </div>
     )
 }

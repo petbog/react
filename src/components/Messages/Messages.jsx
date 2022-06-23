@@ -21,11 +21,19 @@ let DialogsData = [
     { id: 4, name: 'Настя' },
     { id: 5, name: 'Вероника' },
 ]
+
 let MessagesData = [
     { id: 1, message: 'Привет' },
     { id: 2, message: 'Как дела?' },
     { id: 3, message: 'Что делаешь?' },
 ]
+
+let NewDialog = DialogsData
+    .map(dialog => <DialogItem name={dialog.name} id={dialog.id} />)
+
+
+let NewMessage = MessagesData
+    .map(message => <DialogMessages text={message.message} />)
 
 const Messages = (props) => {
     return (
@@ -33,12 +41,12 @@ const Messages = (props) => {
             {/* <h4 className="">Messages</h4> */}
             <div className={classes.Messages_name}>
                 <div className={classes.Messages_name_box}>
-                    <DialogItem name={DialogsData[0].name} id={DialogsData[0].id} />
+                    {NewDialog}
                 </div>
             </div>
             <div className={classes.Messag_inner}>
                 <div className={classes.Messag_inner_box}>
-                    <DialogMessages text={MessagesData[0].message} />
+                    {NewMessage}
                 </div>
             </div>
         </div>
