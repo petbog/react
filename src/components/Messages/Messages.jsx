@@ -14,28 +14,15 @@ const DialogMessages = (props) => {
     )
 }
 
-let DialogsData = [
-    { id: 1, name: 'Андрей' },
-    { id: 2, name: 'Иван' },
-    { id: 3, name: 'Костя' },
-    { id: 4, name: 'Настя' },
-    { id: 5, name: 'Вероника' },
-]
+const Messages = (props) => {
 
-let MessagesData = [
-    { id: 1, message: 'Привет' },
-    { id: 2, message: 'Как дела?' },
-    { id: 3, message: 'Что делаешь?' },
-]
-
-let NewDialog = DialogsData
-    .map(dialog => <DialogItem name={dialog.name} id={dialog.id} />)
-
-
-let NewMessage = MessagesData
+let NewMessage = props.MessagesData
     .map(message => <DialogMessages text={message.message} />)
 
-const Messages = (props) => {
+
+let NewDialog = props.DialogsData
+    .map(dialog => <DialogItem name={dialog.name} id={dialog.id} />)
+
     return (
         <div className={classes.Messages_inner}>
             {/* <h4 className="">Messages</h4> */}

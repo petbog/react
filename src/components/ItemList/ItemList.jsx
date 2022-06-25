@@ -4,14 +4,14 @@ import Comment from './Comments/Comment';
 import classes from './ItemList.module.css';
 import ItemListInput from './ItemListInput/ItemListInput';
 
-let PostsData = [
-    { id: 1, message: 'Пойду поем' },
-    { id: 2, message: 'теперь поспать' },
-]
-let Post = PostsData
-.map(p => <Comment comment ={p.message}/> )
 
-const ItemList = () => {
+
+const ItemList = (props) => {
+
+
+    let Post = props.PostsData
+        .map(p => <Comment comment={p.message} />)
+
     return (
         <div className="">
             <div className={classes.item_list}>
@@ -22,8 +22,8 @@ const ItemList = () => {
                     <CardProfile />
                 </div>
             </div>
-                <ItemListInput />
-                {Post}
+            <ItemListInput />
+            {Post}
         </div>
     )
 }

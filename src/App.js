@@ -8,15 +8,16 @@ import { Routes, Route } from 'react-router-dom';
 import Music from './components/Music/Musik';
 
 
-const App = () => {
+const App = (props) => {
+
   return (
     <div className='app-wrapper'>
       < Header />
       <div className='wrapper_item_list'>
         < NavBar />
         <Routes>
-          <Route path='/' element={<ItemList />} />
-          <Route path='/Messages/*' element={<Messages />} />
+          <Route path='/' element={<ItemList PostsData={props.PostsData}  />} />
+          <Route path='/Messages/*' element={ <Messages DialogsData={props.DialogsData} MessagesData={props.MessagesData} />} />
           <Route path='Music' element={<Music />} />
         </Routes>
       </div>
