@@ -9,7 +9,7 @@ import ItemListInput from './ItemListInput/ItemListInput';
 const ItemList = (props) => {
 
 
-    let Post = props.PostsData
+    let Post = props.state.PostsData
         .map(p => <Comment comment={p.message} />)
 
     return (

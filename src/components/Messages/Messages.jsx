@@ -16,11 +16,11 @@ const DialogMessages = (props) => {
 
 const Messages = (props) => {
 
-let NewMessage = props.MessagesData
+let NewMessage = props.state.MessagesData
     .map(message => <DialogMessages text={message.message} />)
 
 
-let NewDialog = props.DialogsData
+let NewDialog = props.state.DialogsData
     .map(dialog => <DialogItem name={dialog.name} id={dialog.id} />)
 
     return (
