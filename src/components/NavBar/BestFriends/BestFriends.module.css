@@ -1,0 +1,21 @@
+.BestFriends_box {
+    display: flex;
+    justify-content: space-around;
+    width: 180px;
+    margin: 70px 0 0 0;
+}
+
+.BestFriends_inner {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgb(230, 237, 13);
+}
+
+.BestFriends_name {
+    color: black;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 15px;
+    margin: 53px 0 0 0;
+}
