@@ -10,12 +10,16 @@
     height: 50px;
     border-radius: 50%;
     background-color: rgb(230, 237, 13);
+    position: relative;
 }
 
-.BestFriends_name {
+.Messages_name{
     color: black;
     font-size: 17px;
     font-weight: 400;
     line-height: 15px;
-    margin: 53px 0 0 0;
+    text-decoration: none;
+    position: absolute;
+    top: 57px;
+    left: 2px;
 }

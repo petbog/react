@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const DialogItem = (props) => {
     return (
-        <p className={classes.Messages_name_inner}><Link to={'/messages/' + props.id} >{props.name}</Link></p>
+        <p className={classes.Messages_name_inner}><Link to={'/messages/' + props.id}>{props.name}</Link></p>
     )
 }
 

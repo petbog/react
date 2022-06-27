@@ -18,6 +18,13 @@ let state = {
             { id: 1, message: 'Пойду поем' },
             { id: 2, message: 'теперь поспать' },
         ],
+    },
+    NavBarPage:{
+        InnerFriends: [
+            { id: 1, name: 'Sasha' },
+            { id: 2, name: 'Andrei' },
+            { id: 3, name: 'Victor' },
+        ],
     }
 
 
