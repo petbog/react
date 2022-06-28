@@ -33,3 +33,24 @@
 .Messages_name_box .active{
     color: rgb(250, 239, 239);
 }
+.Messag_text_inner{
+    width: 300px;
+    height: 100px;
+    margin: 80px 0 0 50px
+}
+
+.Messag_text_button{
+    padding: 10px 25px;
+    background-color: greenyellow;
+    border: 1px solid;
+
+}
+
+.Messag_text_box{
+    position: relative;
+}
+.Messag_text_button{
+    position: absolute;
+    right: 0;
+    bottom: -60px;
+}

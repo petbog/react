@@ -16,12 +16,18 @@ const DialogMessages = (props) => {
 
 const Messages = (props) => {
 
-let NewMessage = props.state.MessagesData
-    .map(message => <DialogMessages text={message.message} />)
+    let NewMessage = props.state.MessagesData
+        .map(message => <DialogMessages text={message.message} />)
 
 
-let NewDialog = props.state.DialogsData
-    .map(dialog => <DialogItem name={dialog.name} id={dialog.id} />)
+    let NewDialog = props.state.DialogsData
+        .map(dialog => <DialogItem name={dialog.name} id={dialog.id} />)
+
+    let textInner = () => {
+        let textData = text.current.value;
+        alert(textData)
+    }
+    let text = React.createRef()
 
     return (
         <div className={classes.Messages_inner}>
@@ -34,6 +40,12 @@ let NewDialog = props.state.DialogsData
             <div className={classes.Messag_inner}>
                 <div className={classes.Messag_inner_box}>
                     {NewMessage}
+                </div>
+                <div className={classes.Messag_text}>
+                    <div className={classes.Messag_text_box}>
+                        <textarea ref={text} className={classes.Messag_text_inner} name="" id="" cols="30" rows="10"></textarea>
+                        <button onClick={textInner} className={classes.Messag_text_button}>Отправить</button>
+                    </div>
                 </div>
             </div>
         </div>
