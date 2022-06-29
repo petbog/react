@@ -5,13 +5,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import state from './redux/state';
-
+import {AddPost} from './redux/state';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App state ={state}/>
+      <App state ={state}  AddPost={AddPost}/>
     </BrowserRouter>
   </React.StrictMode>
 );

@@ -1,10 +1,10 @@
 import React from 'react';
 import classes from './ItemListInput.module.css';
 
-const ItemListInput = () => {
+const ItemListInput = (props) => {
     let Pas = () => {
         let PasInner = Input.current.value;
-        alert(PasInner);
+        props.AddPost(PasInner);
     }
 
     let Input = React.createRef();

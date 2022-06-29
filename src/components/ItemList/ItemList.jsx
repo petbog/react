@@ -22,7 +22,7 @@ const ItemList = (props) => {
                     <CardProfile />
                 </div>
             </div>
-            <ItemListInput />
+            <ItemListInput AddPost={props.AddPost} />
             {Post}
         </div>
     )

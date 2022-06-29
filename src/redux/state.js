@@ -19,7 +19,7 @@ let state = {
             { id: 2, message: 'теперь поспать' },
         ],
     },
-    NavBarPage:{
+    NavBarPage: {
         InnerFriends: [
             { id: 1, name: 'Sasha' },
             { id: 2, name: 'Andrei' },
@@ -28,6 +28,16 @@ let state = {
     }
 
 
+}
+
+export let AddPost = (postMessages) => {
+
+    let NewPost = {
+        id: 3,
+        message: postMessages,
+    }
+
+    state.profilePage.PostsData.push(NewPost);
 }
 
 export default state;
