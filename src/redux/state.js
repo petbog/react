@@ -1,3 +1,4 @@
+import {rerenderEntireTree} from './../routs';
 let state = {
     messagesPage: {
         DialogsData: [
@@ -38,6 +39,7 @@ export let AddPost = (postMessages) => {
     }
 
     state.profilePage.PostsData.push(NewPost);
+    rerenderEntireTree(state)
 }
 
 export default state;

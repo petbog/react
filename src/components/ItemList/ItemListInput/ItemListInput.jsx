@@ -5,6 +5,7 @@ const ItemListInput = (props) => {
     let Pas = () => {
         let PasInner = Input.current.value;
         props.AddPost(PasInner);
+        Input.current.value ='';
     }
 
     let Input = React.createRef();
