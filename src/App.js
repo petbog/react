@@ -16,7 +16,7 @@ const App = (props) => {
       <div className='wrapper_item_list'>
         < NavBar state={props.state.NavBarPage} />
         <Routes>
-          <Route path='/*' element={<ItemList state={props.state.profilePage}  AddPost={props.AddPost} />} />
+          <Route path='/*' element={<ItemList state={props.state.profilePage} newPostText={props.state.newPostText}  AddPost={props.AddPost} updateNewPostText={props.updateNewPostText} />} />
           <Route path='/Messages/*' element={<Messages state={props.state.messagesPage} />} />
           <Route path='Music' element={<Music />} />
         </Routes>

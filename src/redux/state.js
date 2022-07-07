@@ -1,4 +1,7 @@
-import {rerenderEntireTree} from './../routs';
+let rerenderEntireTree = () => {
+    console.log('state is changed');
+}
+
 let state = {
     messagesPage: {
         DialogsData: [
@@ -19,6 +22,7 @@ let state = {
             { id: 1, message: 'Пойду поем' },
             { id: 2, message: 'теперь поспать' },
         ],
+        newPostText: 'new text',
     },
     NavBarPage: {
         InnerFriends: [
@@ -31,15 +35,25 @@ let state = {
 
 }
 
-export let AddPost = (postMessages) => {
+export let AddPost = () => {
 
     let NewPost = {
         id: 3,
-        message: postMessages,
+        message: state.profilePage.newPostText,
     }
 
     state.profilePage.PostsData.push(NewPost);
     rerenderEntireTree(state)
+}
+
+export let updateNewPostText = (NewText) => {
+    state.profilePage.newPostText = NewText
+    rerenderEntireTree(state)
+}
+
+
+export const subscribe = (observer) => {
+    rerenderEntireTree = observer;
 }
 
 export default state;
