@@ -22,7 +22,7 @@ const ItemList = (props) => {
                     <CardProfile />
                 </div>
             </div>
-            <ItemListInput AddPost={props.AddPost} newPostText={props.state.newPostText}  updateNewPostText ={props.updateNewPostText}/>
+            <ItemListInput dispatch={props.dispatch} newPostText={props.state.newPostText} />
             {Post}
         </div>
     )

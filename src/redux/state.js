@@ -36,12 +36,10 @@ let store = {
         console.log('state is changed');
     },
     AddPost() {
-
         let NewPost = {
             id: 3,
             message: this._state.profilePage.newPostText,
         }
-
         this._state.profilePage.PostsData.push(NewPost);
         this._callSubscriber(this._state)
     },
@@ -50,7 +48,21 @@ let store = {
         this._callSubscriber(this._state)
     },
     subscribe(observer) {
-       this._callSubscriber = observer;
+        this._callSubscriber = observer;
+    },
+    dispatch(action) {
+        debugger;
+        if (action.type === 'ADD-POST') {
+            let NewPost = {
+                id: 3,
+                message: this._state.profilePage.newPostText,
+            }
+            this._state.profilePage.PostsData.push(NewPost);
+            this._callSubscriber(this._state)
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.profilePage.newPostText = action.NewText
+            this._callSubscriber(this._state)
+        }
     },
 };
 
