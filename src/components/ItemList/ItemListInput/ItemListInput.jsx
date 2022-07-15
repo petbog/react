@@ -1,17 +1,17 @@
 import React from 'react';
 import classes from './ItemListInput.module.css';
+import {addPostActionCreated, UpdateNewPostTextActionCreated} from '../../../redux/state'
+
 
 const ItemListInput = (props) => {
     let Pas = () => {
-        props.dispatch({ type: 'ADD-POST' });
-        props.updateNewPostText('');
+        props.dispatch(addPostActionCreated());
     }
 
     let Input = React.createRef();
     let onPostChange = () => {
-        debugger;
         let PasInner = Input.current.value;
-        props.dispatch({ type: 'UPDATE-NEW-POST-TEXT', NewText: PasInner });
+        props.dispatch(UpdateNewPostTextActionCreated(PasInner));
 
     }
 
