@@ -1,6 +1,7 @@
 import React from "react";
 import classes from "./Messages.module.css";
 import { Link } from 'react-router-dom';
+import {updateNewMessageBody,sendMessageCreator} from '../../redux/messagesPage-reducer'
 
 const DialogItem = (props) => {
     return (
@@ -15,19 +16,23 @@ const DialogMessages = (props) => {
 }
 
 const Messages = (props) => {
-
-    let NewMessage = props.state.MessagesData
+    let state = props.store.getState().messagesPage
+    let NewMessage = state.MessagesData
         .map(message => <DialogMessages text={message.message} />)
 
 
-    let NewDialog = props.state.DialogsData
+    let NewDialog = state.DialogsData
         .map(dialog => <DialogItem name={dialog.name} id={dialog.id} />)
+    let NewMessageBody = state.DialogsData.NewMessageBody;
+
 
     let textInner = () => {
-        let textData = text.current.value;
-        alert(textData)
+        props.store.dispatch(sendMessageCreator())
     }
-    let text = React.createRef()
+    let onNewMessageChange = (event) => {
+        let body = event.target.value;
+        props.store.dispatch(updateNewMessageBody(body))
+    }
 
     return (
         <div className={classes.Messages_inner}>
@@ -40,11 +45,11 @@ const Messages = (props) => {
             <div className={classes.Messag_inner}>
                 <div className={classes.Messag_inner_box}>
                     {NewMessage}
-                </div>
-                <div className={classes.Messag_text}>
-                    <div className={classes.Messag_text_box}>
-                        <textarea ref={text} className={classes.Messag_text_inner} name="" id="" cols="30" rows="10"></textarea>
-                        <button onClick={textInner} className={classes.Messag_text_button}>Отправить</button>
+                    <div className={classes.Messag_text}>
+                        <div className={classes.Messag_text_box}>
+                            <textarea value={NewMessageBody} onChange={onNewMessageChange}  className={classes.Messag_text_inner} placeholder="new message"></textarea>
+                            <button onClick={textInner} className={classes.Messag_text_button}>Отправить</button>
+                        </div>
                     </div>
                 </div>
             </div>

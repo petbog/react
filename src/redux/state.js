@@ -1,5 +1,7 @@
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-const ADD_POST = 'ADD-POST';
+import NavBarReducer from './NavBarPage-reducer';
+import messagesReducer from './messagesPage-reducer';
+import profileReducer from './profilePage-reducer';
+
 
 let store = {
     _state: {
@@ -16,13 +18,14 @@ let store = {
                 { id: 2, message: 'Как дела?' },
                 { id: 3, message: 'Что делаешь?' },
             ],
+            newMessageBody: "",
         },
         profilePage: {
             PostsData: [
                 { id: 1, message: 'Пойду поем' },
                 { id: 2, message: 'теперь поспать' },
             ],
-            newPostText: 'new text',
+            newPostText: '',
         },
         NavBarPage: {
             InnerFriends: [
@@ -53,31 +56,15 @@ let store = {
     subscribe(observer) {
         this._callSubscriber = observer;
     },
-    dispatch(action) { 
-        if (action.type === ADD_POST) {
-            let NewPost = {
-                id: 3,
-                message: this._state.profilePage.newPostText,
-            }
-            this._state.profilePage.PostsData.push(NewPost);
-            this._callSubscriber(this._state)
-        } else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText = action.NewText
-            this._callSubscriber(this._state)
-        }
+    dispatch(action) {
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.messagesPage = messagesReducer(this._state.messagesPage, action)
+        this._state.NavBarReducer = NavBarReducer(this._state.NavBarReducer, action)
+
+        this._callSubscriber(this._state)
+
     },
 };
-export const addPostActionCreated =() =>{
-    return{
-         type: 'ADD-POST' 
-    }
-}
-export const UpdateNewPostTextActionCreated =(PasInner) =>{
-    return{
-        type: 'UPDATE-NEW-POST-TEXT', NewText: PasInner 
-    }
-}
-
 
 
 export default store;

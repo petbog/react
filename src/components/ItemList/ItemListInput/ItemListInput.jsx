@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './ItemListInput.module.css';
-import {addPostActionCreated, UpdateNewPostTextActionCreated} from '../../../redux/state'
+import {addPostActionCreated, UpdateNewPostTextActionCreated} from '../../../redux/profilePage-reducer'
 
 
 const ItemListInput = (props) => {
