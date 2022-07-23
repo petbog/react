@@ -1,5 +1,7 @@
-const NavBarReducer = (state, action) => {
+let initialState = {};
 
+const NavBarReducer = (state = initialState, action) => {
+    return state;
 }
 
 export default NavBarReducer;

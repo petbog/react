@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './NavBar.module.css'
 import { Link } from 'react-router-dom';
-import BestFriends from './BestFriends/BestFriends';
+// import BestFriends from './BestFriends/BestFriends';
 
 const NavBar = (props) => {
   return (
@@ -11,7 +11,7 @@ const NavBar = (props) => {
       <div className={classes.nav__items}><p className={classes.nav_items_link}>News</p></div>
       <div className={classes.nav__items}><Link to='/music' className={classes.nav_items_link}>Music</Link></div>
       <div className={classes.nav__items}><p className={classes.nav_items_link}>Setting</p></div>
-      <BestFriends state={props.state}/>
+      {/* <BestFriends state={props.state}/> */}
     </nav>
   )
 }

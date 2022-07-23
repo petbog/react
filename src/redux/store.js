@@ -28,11 +28,11 @@ let store = {
             newPostText: '',
         },
         NavBarPage: {
-            InnerFriends: [
-                { id: 1, name: 'Sasha' },
-                { id: 2, name: 'Andrei' },
-                { id: 3, name: 'Victor' },
-            ],
+            // InnerFriends: [
+            //     { id: 1, name: 'Sasha' },
+            //     { id: 2, name: 'Andrei' },
+            //     { id: 3, name: 'Victor' },
+            // ],
         }
     },
     getState() {
@@ -59,7 +59,7 @@ let store = {
     dispatch(action) {
         this._state.profilePage = profileReducer(this._state.profilePage, action)
         this._state.messagesPage = messagesReducer(this._state.messagesPage, action)
-        this._state.NavBarReducer = NavBarReducer(this._state.NavBarReducer, action)
+        this._state.NavBarReducer = NavBarReducer(this._state.NavBarPage, action)
 
         this._callSubscriber(this._state)
 
