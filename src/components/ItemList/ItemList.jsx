@@ -9,7 +9,7 @@ import {addPostActionCreated,UpdateNewPostTextActionCreated } from '../../redux/
 const ItemList = (props) => {
 
 
-    let Post = props.state.PostsData
+    let Post = props.posts
         .map(p => <Comment comment={p.message} />)
 
     let Pas = () => {
