@@ -2,7 +2,7 @@ import React from 'react';
 import CardProfile from './Card_profile/Card_profile';
 import Comment from './Comments/Comment';
 import classes from './ItemList.module.css';
-import ItemListInput from './ItemListInput/ItemListInput';
+import {addPostActionCreated,UpdateNewPostTextActionCreated } from '../../redux/profilePage-reducer'
 
 
 
@@ -11,6 +11,17 @@ const ItemList = (props) => {
 
     let Post = props.state.PostsData
         .map(p => <Comment comment={p.message} />)
+
+    let Pas = () => {
+        props.dispatch(addPostActionCreated());
+    }
+
+    let Input = React.createRef();
+    let onPostChange = () => {
+        let PasInner = Input.current.value;
+        props.dispatch(UpdateNewPostTextActionCreated(PasInner));
+
+    }
 
     return (
         <div className="">
@@ -22,7 +33,13 @@ const ItemList = (props) => {
                     <CardProfile />
                 </div>
             </div>
-            <ItemListInput dispatch={props.dispatch} newPostText={props.state.newPostText} />
+            <div className={classes.ItemListInput_item}>
+                <form action="">
+                    <p className={classes.ItemListInput_text}>My posts</p>
+                    <textarea onChange={onPostChange} ref={Input} value={props.newPostText} className={classes.ItemListInput_input} />
+                </form>
+                <button onClick={Pas} className={classes.ItemListInput_button}>Send</button>
+            </div>
             {Post}
         </div>
     )
