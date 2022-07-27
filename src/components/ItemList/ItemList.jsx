@@ -2,24 +2,22 @@ import React from 'react';
 import CardProfile from './Card_profile/Card_profile';
 import Comment from './Comments/Comment';
 import classes from './ItemList.module.css';
-import {addPostActionCreated,UpdateNewPostTextActionCreated } from '../../redux/profilePage-reducer'
 
 
 
 const ItemList = (props) => {
-
-
     let Post = props.posts
         .map(p => <Comment comment={p.message} />)
 
     let Pas = () => {
-        props.dispatch(addPostActionCreated());
+        props.Pas()
     }
 
     let Input = React.createRef();
+
     let onPostChange = () => {
         let PasInner = Input.current.value;
-        props.dispatch(UpdateNewPostTextActionCreated(PasInner));
+        props.updateNewPostText(PasInner)
 
     }
 
