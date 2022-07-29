@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./Messages.module.css";
 import { Link } from 'react-router-dom';
-import {updateNewMessageBody,sendMessageCreator} from '../../redux/messagesPage-reducer'
+
 
 const DialogItem = (props) => {
     return (
@@ -16,7 +16,7 @@ const DialogMessages = (props) => {
 }
 
 const Messages = (props) => {
-    let state = props.store.getState().messagesPage
+    let state = props.messagesPage
     let NewMessage = state.MessagesData
         .map(message => <DialogMessages text={message.message} />)
 
@@ -27,11 +27,11 @@ const Messages = (props) => {
 
 
     let textInner = () => {
-        props.store.dispatch(sendMessageCreator())
+        props.sendMessage()
     }
     let onNewMessageChange = (event) => {
         let body = event.target.value;
-        props.store.dispatch(updateNewMessageBody(body))
+        props.updateNewPost(body)
     }
 
     return (
