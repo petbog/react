@@ -13,10 +13,10 @@ const App = (props) => {
     <div className='app-wrapper'>
       < Header />
       <div className='wrapper_item_list'>
-        < NavBar state={props.state.NavBarPage} />
+        < NavBar />
         <Routes>
-          <Route path='/*' element={<ItemListContainer  store = {props.store}/>} />
-          <Route path='/Messages/*' element={<MessagesContainer  store ={props.store} />} />
+          <Route path='/*' element={<ItemListContainer />} />
+          <Route path='/Messages/*' element={<MessagesContainer />} />
           <Route path='Music' element={<Music />} />
         </Routes>
       </div>
