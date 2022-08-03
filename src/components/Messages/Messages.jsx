@@ -18,11 +18,11 @@ const DialogMessages = (props) => {
 const Messages = (props) => {
     let state = props.messagesPage
     let NewMessage = state.MessagesData
-        .map(message => <DialogMessages text={message.message} />)
+        .map(message => <DialogMessages text={message.message} messagkey = {message.id} />)
 
 
     let NewDialog = state.DialogsData
-        .map(dialog => <DialogItem name={dialog.name} id={dialog.id} />)
+        .map(dialog => <DialogItem name={dialog.name} key={dialog.id} id={dialog.id} />)
     let NewMessageBody = state.DialogsData.NewMessageBody;
 
 

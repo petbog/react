@@ -7,7 +7,7 @@ import classes from './ItemList.module.css';
 
 const ItemList = (props) => {
     let Post = props.posts
-        .map(p => <Comment comment={p.message} />)
+        .map(p => <Comment comment={p.message} key = {p.id} />)
 
     let Pas = () => {
         props.Pas()
@@ -20,7 +20,7 @@ const ItemList = (props) => {
         props.updateNewPostText(PasInner)
 
     }
-
+debugger;
     return (
         <div className="">
             <div className={classes.item_list}>
