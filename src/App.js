@@ -6,6 +6,7 @@ import { Routes, Route } from 'react-router-dom';
 import Music from './components/Music/Musik';
 import ItemListContainer from './components/ItemList/ItemListContainer';
 import MessagesContainer from './components/Messages/MessagesContainer';
+import UsersContainer from './components/users/UsersContainer';
 
 
 const App = (props) => {
@@ -18,6 +19,7 @@ const App = (props) => {
           <Route path='/*' element={<ItemListContainer />} />
           <Route path='/Messages/*' element={<MessagesContainer />} />
           <Route path='Music' element={<Music />} />
+          <Route path='Users' element={<UsersContainer/>} />
         </Routes>
       </div>
     </div>

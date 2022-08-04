@@ -25,7 +25,7 @@ let store = {
                 { id: 1, message: 'Пойду поем' },
                 { id: 2, message: 'теперь поспать' },
             ],
-            newPostText: 'ddddd',
+            newPostText: '',
         },
         NavBarPage: {
             // InnerFriends: [
