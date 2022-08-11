@@ -1,0 +1,41 @@
+.wrapper{
+    width: 980px;
+}
+.wrapper_user{
+    display: flex;
+    justify-content: space-around;
+}
+.button{
+padding: 3px 11px 3px 11px;
+background-color: lightgreen;
+border: none;
+margin-top: 70px;
+}
+.img_wrapper{
+    width: 100px;
+}
+.info_wrapper{
+    width: 790px;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+.user_name{
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 15px;
+}
+.user_status{
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 10px;
+}
+.user{
+    padding: 0 0 0 20px;
+}
+.location{
+    width: 170px;
+    text-align: center;
+}
