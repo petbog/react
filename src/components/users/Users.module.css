@@ -4,15 +4,23 @@
 .wrapper_user{
     display: flex;
     justify-content: space-around;
+    height: 140px;
 }
 .button{
 padding: 3px 11px 3px 11px;
 background-color: lightgreen;
 border: none;
-margin-top: 70px;
 }
 .img_wrapper{
     width: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.img{
+    width: 100px;
+    height: 100px;
 }
 .info_wrapper{
     width: 790px;
@@ -38,4 +46,15 @@ margin-top: 70px;
 .location{
     width: 170px;
     text-align: center;
+}
+.button_wrapper{
+    display: flex;
+    justify-content: center;
+}
+.button_getUsers{
+    padding: 10px 20px;
+    border: none;
+    background-color: lawngreen;
+    font-size: 18px;
+    margin-bottom: 20px;
 }
