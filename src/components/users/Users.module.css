@@ -61,4 +61,12 @@ border: none;
 .selectedPage{
     font-weight: bold;
     height: 100px;
+    cursor: pointer;
+}
+.loader_img{
+    width: 95px;
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
 }
