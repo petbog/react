@@ -1,6 +1,7 @@
 import React from "react";
 import classes from "./Users.module.css";
 import user from "../../assets/images/user.png";
+import { NavLink } from "react-router-dom";
 
 
 let Users = (props) => {
@@ -12,7 +13,6 @@ let Users = (props) => {
         pages.push(i);
         if (i === 40) break;
     }
-
     return (
         <div className={classes.wrapper}>
 
@@ -25,7 +25,9 @@ let Users = (props) => {
             {
                 props.users.map(u => <div className={classes.wrapper_user} key={u.id}>
                     <div className={classes.img_wrapper}>
-                        <img src={u.photos.small != null ? u.photos.small : user} alt="" className={classes.img} />
+                        <NavLink to={'/*' + u.id}>
+                            <img src={u.photos.small != null ? u.photos.small : user} alt="" className={classes.img} />
+                        </NavLink>
                         {u.followed ?
                             <button className={classes.button} onClick={() => { props.unfollow(u.id) }} >unfollow</button> :
                             <button className={classes.button} onClick={() => { props.follow(u.id) }} >follow</button>}

@@ -10,12 +10,12 @@ let reducers = combineReducers({
     profilePage: profileReducer,
     messagesPage: messagesReducer,
     NavBarPage: NavBarReducer,
-    UsersPage:UsersReducer,
+    UsersPage: UsersReducer,
 })
 
 let store = createStore(reducers);
 
 
-
+window.store = store;
 
 export default store;
