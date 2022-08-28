@@ -1,11 +1,13 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import classes from "./Messages.module.css";
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 
 const DialogItem = (props) => {
     return (
-        <p className={classes.Messages_name_inner}><Link to={'/messages/' + props.id}>{props.name}</Link></p>
+        // <p className={classes.Messages_name_inner}><Link to={'/messages/' + props.id}>{props.name}</Link></p>
+        <p className={classes.Messages_name_inner}><NavLink to={'/messages/' + props.id}>{props.name}</NavLink></p>
     )
 }
 
@@ -18,7 +20,7 @@ const DialogMessages = (props) => {
 const Messages = (props) => {
     let state = props.messagesPage
     let NewMessage = state.MessagesData
-        .map(message => <DialogMessages text={message.message} key = {message.id} />)
+        .map(message => <DialogMessages text={message.message} key={message.id} />)
 
 
     let NewDialog = state.DialogsData
@@ -47,7 +49,7 @@ const Messages = (props) => {
                     {NewMessage}
                     <div className={classes.Messag_text}>
                         <div className={classes.Messag_text_box}>
-                            <textarea value={NewMessageBody} onChange={onNewMessageChange}  className={classes.Messag_text_inner} placeholder="new message"></textarea>
+                            <textarea value={NewMessageBody} onChange={onNewMessageChange} className={classes.Messag_text_inner} placeholder="new message"></textarea>
                             <button onClick={textInner} className={classes.Messag_text_button}>Отправить</button>
                         </div>
                     </div>

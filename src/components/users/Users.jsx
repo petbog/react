@@ -25,7 +25,7 @@ let Users = (props) => {
             {
                 props.users.map(u => <div className={classes.wrapper_user} key={u.id}>
                     <div className={classes.img_wrapper}>
-                        <NavLink to={'/*' + u.id}>
+                        <NavLink to={'/ItemList/' + u.id}>
                             <img src={u.photos.small != null ? u.photos.small : user} alt="" className={classes.img} />
                         </NavLink>
                         {u.followed ?
