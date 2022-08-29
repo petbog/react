@@ -8,12 +8,11 @@ import { withRouter } from "react-router-dom";
 class ItemListContainer extends React.Component {
 
     componentDidMount() {
-        debugger;
         let userId = this.props.match.params.userId;
-        if(!userId){
+        if (!userId) {
             userId = 2;
         }
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/ `+ userId).then(response => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/ ` + userId).then(response => {
             this.props.setUsersProfile(response.data);
         });
     }
@@ -33,5 +32,5 @@ let mapStateToProps = (state) => {
     }
 };
 
- let withUrlDataContainerComponent = withRouter(ItemListContainer)
+let withUrlDataContainerComponent = withRouter(ItemListContainer)
 export default connect(mapStateToProps, { addPost, UpdateNewPostText, setUsersProfile })(withUrlDataContainerComponent);

@@ -4,4 +4,15 @@
   height: 60px;
   background-color: rgb(15, 160, 22);
   margin: 0 0 10px 0;
+  display: flex;
+  justify-content: space-between;
+}
+.login{
+  color: #fff;
+  padding: 14px 25px;
+  font-size: 20px;
+}
+.login a{
+  color: #fff;
+  text-decoration: none;
 }
