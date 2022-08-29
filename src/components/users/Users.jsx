@@ -2,6 +2,7 @@ import React from "react";
 import classes from "./Users.module.css";
 import user from "../../assets/images/user.png";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 
 
 let Users = (props) => {
@@ -18,7 +19,7 @@ let Users = (props) => {
 
             <div>
                 {pages.map(p => {
-                    return <span className={props.currentPage === p && classes.selectedPage}
+                    return <span key={p.id} className={props.currentPage === p && classes.selectedPage}
                         onClick={(e) => { props.onPageChanged(p); }}> {p}</span>
                 })}
             </div>
@@ -29,8 +30,30 @@ let Users = (props) => {
                             <img src={u.photos.small != null ? u.photos.small : user} alt="" className={classes.img} />
                         </NavLink>
                         {u.followed ?
-                            <button className={classes.button} onClick={() => { props.unfollow(u.id) }} >unfollow</button> :
-                            <button className={classes.button} onClick={() => { props.follow(u.id) }} >follow</button>}
+                            <button className={classes.button} onClick={() => {
+                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
+                                    withCredentials: true,
+                                    headers:{
+                                        'API-KEY':'898044f8-949b-4aa5-a231-76970fe607f7'
+                                    }
+                                }).then(response => {
+                                    if (response.data.resultCode === 0) {
+                                        props.unfollow(u.id);
+                                    }
+                                })
+                            }} >unfollow</button> :
+                            <button className={classes.button} onClick={() => {
+                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
+                                    withCredentials: true,
+                                    headers:{
+                                        'API-KEY':'898044f8-949b-4aa5-a231-76970fe607f7'
+                                    }
+                                }).then(response => {
+                                    if (response.data.resultCode === 0) {
+                                        props.follow(u.id);
+                                    }
+                                })
+                            }} >follow</button>}
                     </div>
                     <div className={classes.info_wrapper}>
                         <div className={classes.user}>
