@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { follow, setUsers, unfollow, setCurrentPage, setTotalUsersCount, toggleIsFetching } from "../../redux/users-reducer";
+import { follow, setUsers, unfollow, setCurrentPage, setTotalUsersCount, toggleIsFetching ,toggleFollowingProgress} from "../../redux/users-reducer";
 import React from "react";
 import Users from "./Users";
 import Preloader from "../common/preloader/preloader";
@@ -34,6 +34,9 @@ class UsersContainer extends React.Component {
                 follow={this.props.follow}
                 onPageChanged={this.onPageChanged}
                 users={this.props.users}
+                toggleFollowingProgress={this.props.toggleFollowingProgress}
+                folowingInProgress={this.props.folowingInProgress}
+
             />
         </>
     }
@@ -46,31 +49,11 @@ let mapStateToProps = (state) => {
         totalUsersCount: state.UsersPage.totalUsersCount,
         currentPage: state.UsersPage.currentPage,
         isFetching: state.UsersPage.isFetching,
+        folowingInProgress:state.UsersPage.folowingInProgress,
+        
     }
 };
-// let mapDispatchToProps = (dispatch) => {
-//     return {
-//         follow: (userId) => {
-//             dispatch(followAC(userId))
-//         },
-//         unfollow: (userId) => {
-//             dispatch(unfollowAC(userId))
-//         },
-//         setUsers: (users) => {
-//             dispatch(setUsersAC(users))
-//         },
-//         setCurrentPage: (pageNumber) => {
-//             dispatch(setCurrentPageAC(pageNumber))
-//         },
-//         setTotalUsersCount: (totalCount) => {
-//             dispatch(setTotalUsersCountAC(totalCount))
-//         },
-//         toggleIsFetching: (isFetching) => {
-//             dispatch(toggleIsFetchingAC(isFetching))
-//         }
-//     }
-// }
-// сократил ac, код остался для напоминания
+
 
 
 export default connect(mapStateToProps, {
@@ -80,4 +63,5 @@ export default connect(mapStateToProps, {
     setCurrentPage,
     setTotalUsersCount,
     toggleIsFetching,
+    toggleFollowingProgress,
 })(UsersContainer);
