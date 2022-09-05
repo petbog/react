@@ -2,7 +2,6 @@ import React from "react";
 import classes from "./Users.module.css";
 import user from "../../assets/images/user.png";
 import { NavLink } from "react-router-dom";
-import axios from "axios";
 
 
 let Users = (props) => {
@@ -31,32 +30,10 @@ let Users = (props) => {
                         </NavLink>
                         {u.followed ?
                             <button disabled={props.folowingInProgress.some(id => id === u.id)} className={classes.button} onClick={() => {
-                                props.toggleFollowingProgress(true,u.id);
-                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-                                    withCredentials: true,
-                                    headers:{
-                                        'API-KEY':'898044f8-949b-4aa5-a231-76970fe607f7'
-                                    }
-                                }).then(response => {
-                                    if (response.data.resultCode === 0) {
-                                        props.unfollow(u.id);
-                                    }
-                                    props.toggleFollowingProgress(false ,u.id);
-                                })
+                                props.follow(u.id);
                             }} >unfollow</button> :
                             <button disabled={props.folowingInProgress.some(id => id === u.id)} className={classes.button} onClick={() => {
-                                props.toggleFollowingProgress(true,u.id);
-                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
-                                    withCredentials: true,
-                                    headers:{
-                                        'API-KEY':'898044f8-949b-4aa5-a231-76970fe607f7'
-                                    }
-                                }).then(response => {
-                                    if (response.data.resultCode === 0) {
-                                        props.follow(u.id);
-                                    }
-                                    props.toggleFollowingProgress(false,u.id);
-                                })
+                                props.unfollow(u.id);
                             }} >follow</button>}
                     </div>
                     <div className={classes.info_wrapper}>
