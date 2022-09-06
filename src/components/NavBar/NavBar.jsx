@@ -17,11 +17,10 @@ const NavBar = (props) => {
     // </nav>
     <nav className={classes.nav}>
       <div className={classes.nav__items}> <NavLink to='/ItemList' className={classes.nav_items_link}>Profile</NavLink></div>
-      <div className={classes.nav__items}><NavLink to='/messages' className={classes.nav_items_link}>Messages</NavLink></div>
-      <div className={classes.nav__items}><p className={classes.nav_items_link}>News</p></div>
+      <div className={classes.nav__items}><NavLink to='/messages' className={classes.nav_items_link}>Messages</NavLink></div> 
       <div className={classes.nav__items}><NavLink to='/Music' className={classes.nav_items_link}>Music</NavLink></div>
       <div className={classes.nav__items}><NavLink to='/Users' className={classes.nav_items_link}> Users</NavLink></div>
-      <div className={classes.nav__items}><p className={classes.nav_items_link}>Setting</p></div>
+      <div className={classes.nav__items}><NavLink to='/login' className={classes.nav_items_link}>Login</NavLink> </div>
       {/* <BestFriends state={props.state}/> */}
     </nav>
   )

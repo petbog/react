@@ -7,6 +7,7 @@ import MessagesContainer from './components/Messages/MessagesContainer';
 import UsersContainer from './components/users/UsersContainer';
 import {  Route } from 'react-router-dom';
 import HeaderContainer from './components/Header/HeaderContainer';
+import Login from './components/Login/login';
 
 
 const App = (props) => {
@@ -19,6 +20,7 @@ const App = (props) => {
           <Route path='/Messages' render={() => <MessagesContainer />} />
           <Route path='/Music' render={() => <Music />} />
           <Route path='/Users' render={() => <UsersContainer />} />
+          <Route path='/Login' render={() => <Login />} />
         </div>
       </div>
   );

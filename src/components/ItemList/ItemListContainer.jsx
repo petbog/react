@@ -26,6 +26,7 @@ let mapStateToProps = (state) => {
         posts: state.profilePage.PostsData,
         newPostText: state.profilePage.newPostText,
         profile: state.profilePage.profile,
+        isAuth:state.auth.isAuth,
     }
 };
 

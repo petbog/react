@@ -3,6 +3,7 @@ import CardProfile from './Card_profile/Card_profile';
 import Comment from './Comments/Comment';
 import classes from './ItemList.module.css';
 import Preloader from '../common/preloader/preloader'
+import { Redirect } from 'react-router-dom';
 
 
 
@@ -25,6 +26,7 @@ const ItemList = (props) => {
     if (!props.profile) {
         return <Preloader />
     }
+    if(!props.isAuth) <Redirect to={'/login'}/>
     return (
         <div className="">
             <div className={classes.item_list}>

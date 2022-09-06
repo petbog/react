@@ -8,6 +8,7 @@ class UsersContainer extends React.Component {
 
     componentDidMount() {
         this.props.getUsers(this.props.currentPage, this.props.pageSize);
+        
     }
     onPageChanged = (pageNumber) => {
         this.props.getUsers(pageNumber, this.props.pageSize);
@@ -24,6 +25,8 @@ class UsersContainer extends React.Component {
                 users={this.props.users}
                 toggleFollowingProgress={this.props.toggleFollowingProgress}
                 folowingInProgress={this.props.folowingInProgress}
+                isAuth={this.props.isAuth}
+                
 
             />
         </>
@@ -38,6 +41,7 @@ let mapStateToProps = (state) => {
         currentPage: state.UsersPage.currentPage,
         isFetching: state.UsersPage.isFetching,
         folowingInProgress: state.UsersPage.folowingInProgress,
+        isAuth:state.auth.isAuth
 
     }
 };
