@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./Users.module.css";
 import user from "../../assets/images/user.png";
-import { NavLink, Redirect } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 
 
 let Users = (props) => {
@@ -13,7 +13,6 @@ let Users = (props) => {
         pages.push(i);
         if (i === 40) break;
     }
-    if(!props.isAuth) return <Redirect to={'/login'}/>;
     return (
         <div className={classes.wrapper}>
 

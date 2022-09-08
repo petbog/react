@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, Redirect } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import classes from "./Messages.module.css";
 // import { Link } from 'react-router-dom';
 
@@ -18,6 +18,7 @@ const DialogMessages = (props) => {
 }
 
 const Messages = (props) => {
+    // искать ошибку тут 
     let state = props.messagesPage
     let NewMessage = state.MessagesData
         .map(message => <DialogMessages text={message.message} key={message.id} />)
@@ -35,7 +36,6 @@ const Messages = (props) => {
         let body = event.target.value;
         props.updateNewPost(body)
     }
-    if(!props.isAuth) return <Redirect to={'/login'}/>
     return (
         <div className={classes.Messages_inner}>
             {/* <h4 className="">Messages</h4> */}
