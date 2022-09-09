@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './Card_profile.module.css';
+import ProfileStatus from './ProfileStatus';
 
 const CardProfileInfo = (props) => {
     return (
@@ -16,7 +17,10 @@ const CardProfileInfo = (props) => {
 
 const CardProfile = () => {
     return (
-        <CardProfileInfo name='Petrov Bogdan' date='Date of Birth : 18 February' city='rostov-on-don' />
+        <div className="">
+            <ProfileStatus status ={'hello'}/>
+            <CardProfileInfo name='Petrov Bogdan' date='Date of Birth : 18 February' city='rostov-on-don' />
+        </div>
     )
 };
 

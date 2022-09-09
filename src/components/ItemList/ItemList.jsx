@@ -28,9 +28,6 @@ const ItemList = (props) => {
     return (
         <div className="">
             <div className={classes.item_list}>
-                {/* <div >
-                    <img src="https://lapkins.ru/upload/iblock/130/1309222f033fb6928ea065578276ab44.jpg" alt="" className={classes.item_list_img} />
-                </div> */}
                 <div className="">
                     <img src={props.profile.photos.large} alt='' />
                 </div>
