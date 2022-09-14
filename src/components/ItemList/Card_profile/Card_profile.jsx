@@ -15,10 +15,10 @@ const CardProfileInfo = (props) => {
     )
 }
 
-const CardProfile = () => {
+const CardProfile = (props) => {
     return (
         <div className="">
-            <ProfileStatus status ={'hello'}/>
+            <ProfileStatus status ={props.status} updateStatus={props.updateStatus}/>
             <CardProfileInfo name='Petrov Bogdan' date='Date of Birth : 18 February' city='rostov-on-don' />
         </div>
     )

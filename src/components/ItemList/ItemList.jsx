@@ -32,7 +32,7 @@ const ItemList = (props) => {
                     <img src={props.profile.photos.large} alt='' />
                 </div>
                 <div className="">
-                    <CardProfile />
+                    <CardProfile status={props.status} updateStatus={props.updateStatus} />
                 </div>
             </div>
             <div className={classes.ItemListInput_item}>
