@@ -1,5 +1,5 @@
 import React from "react";
-import { addPost, UpdateNewPostText, getUsersProfile,getStatus,updateStatus } from '../../redux/profilePage-reducer'
+import { addPost, getUsersProfile,getStatus,updateStatus } from '../../redux/profilePage-reducer'
 import { connect } from "react-redux";
 import ItemList from './ItemList';
 import { withRouter } from "react-router-dom";
@@ -33,8 +33,16 @@ let mapStateToProps = (state) => {
         status:state.profilePage.status,
     }
 };
+let mapDispatchToProps = (dispatch)=>{
+return{
+    addPost:(newPostText)=>{
+        dispatch(addPost(newPostText))
+    }
+}
+}
 export default compose(
-    connect(mapStateToProps, { addPost, UpdateNewPostText, getUsersProfile,getStatus,updateStatus }),
+    connect(mapDispatchToProps),
+    connect(mapStateToProps,{ addPost, getUsersProfile,getStatus,updateStatus }),
     withRouter,
     withAuthRedirect
 )(ItemListContainer);

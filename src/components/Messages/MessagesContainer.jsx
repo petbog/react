@@ -1,5 +1,5 @@
 import Messages from "./Messages";
-import { updateNewMessageBody, sendMessageCreator } from '../../redux/messagesPage-reducer'
+import { sendMessageCreator } from '../../redux/messagesPage-reducer'
 import { connect } from "react-redux";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { compose } from "redux";
@@ -13,16 +13,13 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
     return {
-        updateNewPost: (body) => {
-            dispatch(updateNewMessageBody(body))
-        },
-        sendMessage: () => {
-            dispatch(sendMessageCreator())
-        },
+        sendMessage: (NewMessageBody) => {
+            dispatch(sendMessageCreator(NewMessageBody))
+        }
     }
 }
 export default compose(
-    
+
     connect(mapStateToProps, mapDispatchToProps),
     withAuthRedirect
 )(Messages);

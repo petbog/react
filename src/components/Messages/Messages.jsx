@@ -1,12 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { Field, reduxForm } from "redux-form";
 import classes from "./Messages.module.css";
-// import { Link } from 'react-router-dom';
 
 
 const DialogItem = (props) => {
     return (
-        // <p className={classes.Messages_name_inner}><Link to={'/messages/' + props.id}>{props.name}</Link></p>
         <p className={classes.Messages_name_inner}><NavLink to={'/messages/' + props.id}>{props.name}</NavLink></p>
     )
 }
@@ -17,28 +16,35 @@ const DialogMessages = (props) => {
     )
 }
 
+
+const addMessageForm = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <div className={classes.Messag_text_box}>
+                <Field component={'textarea'} placeholder={"new message"} name={'NewMessageBody'} />
+                <button className={classes.Messag_text_button}>Отправить</button>
+            </div>
+        </form>
+    )
+}
+
+const MessagesReduxForm = reduxForm({ form: 'dialogAddMessageForm' })(addMessageForm)
+
 const Messages = (props) => {
-    // искать ошибку тут 
     let state = props.messagesPage
     let NewMessage = state.MessagesData
         .map(message => <DialogMessages text={message.message} key={message.id} />)
 
-
+    debugger;
     let NewDialog = state.DialogsData
         .map(dialog => <DialogItem name={dialog.name} key={dialog.id} id={dialog.id} />)
-    let NewMessageBody = state.DialogsData.NewMessageBody;
 
 
-    let textInner = () => {
-        props.sendMessage()
-    }
-    let onNewMessageChange = (event) => {
-        let body = event.target.value;
-        props.updateNewPost(body)
+    let addNewMessag = (values) => {
+        props.sendMessage(values.NewMessageBody)
     }
     return (
         <div className={classes.Messages_inner}>
-            {/* <h4 className="">Messages</h4> */}
             <div className={classes.Messages_name}>
                 <div className={classes.Messages_name_box}>
                     {NewDialog}
@@ -48,15 +54,15 @@ const Messages = (props) => {
                 <div className={classes.Messag_inner_box}>
                     {NewMessage}
                     <div className={classes.Messag_text}>
-                        <div className={classes.Messag_text_box}>
-                            <textarea value={NewMessageBody} onChange={onNewMessageChange} className={classes.Messag_text_inner} placeholder="new message"></textarea>
-                            <button onClick={textInner} className={classes.Messag_text_button}>Отправить</button>
-                        </div>
                     </div>
                 </div>
+                <MessagesReduxForm onSubmit={addNewMessag} />
             </div>
         </div>
     )
 }
+
+
+
 
 export default Messages;
