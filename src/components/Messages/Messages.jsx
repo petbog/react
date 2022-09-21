@@ -1,6 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { Field, reduxForm } from "redux-form";
+import { Textarea } from "../common/preloader/FormsControls/FormsControls";
+import { maxLengthCreator, required } from "../utils/validators/validators";
 import classes from "./Messages.module.css";
 
 
@@ -15,13 +17,13 @@ const DialogMessages = (props) => {
         <p className={classes.Messag_inner_text}>{props.text}</p>
     )
 }
-
+const MaxLength40 = maxLengthCreator(40)
 
 const addMessageForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div className={classes.Messag_text_box}>
-                <Field component={'textarea'} placeholder={"new message"} name={'NewMessageBody'} />
+                <Field component={Textarea} validate={[required,MaxLength40]} placeholder={"new message"} name={'NewMessageBody'} />
                 <button className={classes.Messag_text_button}>Отправить</button>
             </div>
         </form>
@@ -35,7 +37,6 @@ const Messages = (props) => {
     let NewMessage = state.MessagesData
         .map(message => <DialogMessages text={message.message} key={message.id} />)
 
-    debugger;
     let NewDialog = state.DialogsData
         .map(dialog => <DialogItem name={dialog.name} key={dialog.id} id={dialog.id} />)
 
