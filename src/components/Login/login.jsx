@@ -1,10 +1,11 @@
-import React from "react"
-import { connect } from "react-redux"
-import { Field, reduxForm } from "redux-form"
-import { Input } from "../common/preloader/FormsControls/FormsControls"
-import { maxLengthCreator, required } from "../utils/validators/validators"
-import { login } from "../../redux/auth-reducer"
-import { Redirect } from "react-router-dom"
+import React from "react";
+import classes from './Login.module.css';
+import { connect } from "react-redux";
+import { Field, reduxForm } from "redux-form";
+import { Input } from "../common/preloader/FormsControls/FormsControls";
+import { maxLengthCreator, required } from "../utils/validators/validators";
+import { login } from "../../redux/auth-reducer";
+import { Redirect } from "react-router-dom";
 
 
 const MaxLength40 = maxLengthCreator(40)
@@ -22,6 +23,7 @@ const LoginForm = (props) => {
             <div className="">
                <Field type={"checkbox"} component={Input} validate={[required, MaxLength40]} name={'rememberMe'} /> remember me
             </div>
+            { props.error && <div className={classes.formSummaryError}>{props.error}</div>}
             <div className="">
                <button>Login</button>
             </div>
