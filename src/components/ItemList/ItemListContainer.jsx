@@ -11,7 +11,10 @@ class ItemListContainer extends React.Component {
     componentDidMount() {
         let userId = this.props.match.params.userId;
         if (!userId) {
-            userId = 25673;
+            userId = this.props.authorizedUserId;
+            if(!userId){
+                this.props.history.push("/login")
+            }
         }
         this.props.getUsersProfile(userId);
         this.props.getStatus(userId)
