@@ -1,19 +1,20 @@
 import { connect } from "react-redux";
-import { follow, unfollow, setCurrentPage, toggleFollowingProgress, getUsers } from "../../redux/users-reducer";
+import { follow, unfollow, setCurrentPage, toggleFollowingProgress, requestUsers } from "../../redux/users-reducer";
 import React from "react";
 import Users from "./Users";
 import Preloader from "../common/preloader/preloader";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { compose } from "redux";
+import { getCurrentPage, getFolowingInProgress, getIsFetching, getPageSize, getTotalUsersCount, getUsers } from "../../redux/Users-selected";
 class UsersContainer extends React.Component {
 
 
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize);
+        this.props.requestUsers(this.props.currentPage, this.props.pageSize);
         
     }
     onPageChanged = (pageNumber) => {
-        this.props.getUsers(pageNumber, this.props.pageSize);
+        this.props.requestUsers(pageNumber, this.props.pageSize);
     }
     render() {
         return <>
@@ -37,17 +38,17 @@ class UsersContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        users: state.UsersPage.users,
-        pageSize: state.UsersPage.pageSize,
-        totalUsersCount: state.UsersPage.totalUsersCount,
-        currentPage: state.UsersPage.currentPage,
-        isFetching: state.UsersPage.isFetching,
-        folowingInProgress: state.UsersPage.folowingInProgress,
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount:getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        folowingInProgress:getFolowingInProgress(state),
     }
 };
 
 export default compose(
-    connect(mapStateToProps, {follow,unfollow,setCurrentPage,toggleFollowingProgress,getUsers,}),
+    connect(mapStateToProps, {follow,unfollow,setCurrentPage,toggleFollowingProgress,requestUsers,}),
     withAuthRedirect
 )(UsersContainer)
 

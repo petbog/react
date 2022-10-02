@@ -80,9 +80,10 @@ export let toggleFollowingProgress = (isFetching, userId) => ({ type: TOGGLE_IS_
 
 export default UsersReducer;
 
-export let getUsers = (currentPage, pageSize) => {
+export let requestUsers = (currentPage, pageSize) => {
     return (dispatch) => {
         dispatch(toggleIsFetching(true))
+        dispatch(setCurrentPage(currentPage))
         usersAPI.getUsers(currentPage, pageSize)
             .then(data => {
                 dispatch(toggleIsFetching(false))
