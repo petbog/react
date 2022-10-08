@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './Card_profile.module.css';
-import ProfileStatus from './ProfileStatus';
+import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 
 const CardProfileInfo = (props) => {
     return (
@@ -18,7 +18,7 @@ const CardProfileInfo = (props) => {
 const CardProfile = (props) => {
     return (
         <div className="">
-            <ProfileStatus status ={props.status} updateStatus={props.updateStatus}/>
+            <ProfileStatusWithHooks status ={props.status} updateStatus={props.updateStatus}/>
             <CardProfileInfo name='Petrov Bogdan' date='Date of Birth : 18 February' city='rostov-on-don' />
         </div>
     )
