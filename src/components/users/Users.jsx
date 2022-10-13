@@ -2,28 +2,36 @@ import React from "react";
 import classes from "./Users.module.css";
 import user from "../../assets/images/user.png";
 import { NavLink} from "react-router-dom";
+import Paginator from "../common/Paginator/Paginator";
 
 
-let Users = (props) => {
+let Users = ({ currentPage,onPageChanged,totalUsersCount,pageSize,users,...props}) => {
 
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+    // let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
 
-    let pages = [];
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i);
-        if (i === 40) break;
-    }
+    // let pages = [];
+    // for (let i = 1; i <= pagesCount; i++) {
+    //     pages.push(i);
+    //     if (i === 40) break;
+    // }
+
+    //вся логика перешла в Paginator
+
     return (
         <div className={classes.wrapper}>
-
-            <div>
+            <Paginator currentPage={currentPage}
+             onPageChanged={onPageChanged} 
+             pageSize={pageSize} 
+             totalUsersCount={totalUsersCount}/>
+            {/* <div>
                 {pages.map(p => {
                     return <span key={p.id} className={props.currentPage === p && classes.selectedPage}
                         onClick={(e) => { props.onPageChanged(p); }}> {p}</span>
                 })}
-            </div>
-            {
-                props.users.map(u => <div className={classes.wrapper_user} key={u.id}>
+            </div> */}
+            { 
+            // 90 урок разделение на user (пока делать не стал)
+                users.map(u => <div className={classes.wrapper_user} key={u.id}>
                     <div className={classes.img_wrapper}>
                         <NavLink to={'/ItemList/' + u.id}>
                             <img src={u.photos.small != null ? u.photos.small : user} alt="" className={classes.img} />
