@@ -55,7 +55,7 @@ export const getUsersProfile = (userId) => async (dispatch) => {
     let response = await usersAPI.getProfile(userId);
     dispatch(setUsersProfile(response.data));
 }
-
+debugger;
 export const getStatus = (userId) => async (dispatch) => {
     let response = await profileAPI.getStatus(userId);
     dispatch(setStatus(response.data));
