@@ -37,3 +37,14 @@
     color: black; 
     border-radius: 7px;
 }
+.userPhoto{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.userPhoto input{
+    margin-top: 40px;
+}
+.userPhoto img{
+    max-width: 200px;
+}

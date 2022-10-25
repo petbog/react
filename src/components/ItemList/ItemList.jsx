@@ -6,6 +6,8 @@ import Preloader from '../common/preloader/preloader'
 import { Field, reduxForm } from 'redux-form';
 import { maxLengthCreator, required } from '../utils/validators/validators';
 import { Textarea } from '../common/preloader/FormsControls/FormsControls';
+import user from "../../assets/images/user.png";
+
 
 const maxLength10 =maxLengthCreator(10)
 
@@ -33,11 +35,18 @@ const ItemList = (props) => {
     let onAddPost = (values) => {
         props.addPost(values.newPostText)
     }
+     const onMainPhotoSelected=(e)=>{
+        if(e.target.files.length){
+            props.savePhoto(e.target.files[0])
+        }
+    }
+    //isOwner проверяет мой ли профиль и делает показ книпки
     return (
         <div className="">
             <div className={classes.item_list}>
-                <div className="">
-                    <img src={props.profile.photos.large} alt='' />
+                <div className={classes.userPhoto}>
+                    <img src={props.profile.photos.large  || user} alt='' />
+                    {props.isOwner && <input onChange={onMainPhotoSelected} type={"file"} />}
                 </div>
                 <div className="">
                     <CardProfile status={props.status} updateStatus={props.updateStatus} />
