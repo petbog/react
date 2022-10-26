@@ -49,7 +49,7 @@ const ItemList = (props) => {
                     {props.isOwner && <input onChange={onMainPhotoSelected} type={"file"} />}
                 </div>
                 <div className="">
-                    <CardProfile status={props.status} updateStatus={props.updateStatus} />
+                    <CardProfile saveProfile={props.saveProfile} isOwner={props.isOwner} profile={props.profile} status={props.status} updateStatus={props.updateStatus} />
                 </div>
             </div>
             <PostReduxForm onSubmit={onAddPost} />

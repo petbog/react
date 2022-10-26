@@ -1,5 +1,5 @@
 import React from "react";
-import { addPost, getUsersProfile, getStatus, updateStatus,savePhoto } from '../../redux/profilePage-reducer'
+import { addPost, getUsersProfile, getStatus, updateStatus,savePhoto,saveProfile} from '../../redux/profilePage-reducer'
 import { connect } from "react-redux";
 import ItemList from './ItemList';
 import { withRouter } from "react-router-dom";
@@ -38,6 +38,7 @@ class ItemListContainer extends React.Component {
               updateStatus={this.props.updateStatus}
               isOwner={!this.props.match.params.userId}
               savePhotoSuccess={this.props.savePhotoSuccess}
+              saveProfile={this.props.saveProfile}
               />
         )
     }
@@ -63,7 +64,7 @@ let mapDispatchToProps = (dispatch) => {
 }
 export default compose(
     connect(mapDispatchToProps),
-    connect(mapStateToProps, { addPost, getUsersProfile, getStatus, updateStatus,savePhoto }),
+    connect(mapStateToProps, { addPost, getUsersProfile, getStatus, updateStatus,savePhoto,saveProfile }),
     withRouter,
     withAuthRedirect
 )(ItemListContainer);
