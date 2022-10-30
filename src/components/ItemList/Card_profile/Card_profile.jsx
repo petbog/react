@@ -6,13 +6,16 @@ import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 
 //Object.keys(обьек) позволяет нам сделать итерацию по обьекту
 
-const CardProfileInfo = ({ profile, isOwner, goToEditMode,saveProfile, ...props }) => {
+const CardProfileInfo = ({ profile, isOwner, goToEditMode, saveProfile, ...props }) => {
     return (
         <div className={classes.CardProfileBox}>
             {isOwner && <div className=""><button onClick={goToEditMode}>edit</button></div>}
             <div className="">
                 <div className="">
                     <b>Full name:</b>{profile.fullName}
+                </div>
+                <div className="">
+                    <b>About me:</b>{profile.aboutMe}
                 </div>
                 <div className="">
                     <b>Looking for a job:</b>{profile.lookingForAJob ? 'yes' : 'no'}
@@ -22,9 +25,6 @@ const CardProfileInfo = ({ profile, isOwner, goToEditMode,saveProfile, ...props 
                         <b>My professional skills:</b>{profile.lookingForAJobDescription}
                     </div>
                 }
-                <div className="">
-                    <b>About me:</b>{profile.AboutMe}
-                </div>
                 <div className="">
                     <b>Contacts:</b>{Object.keys(profile.contacts).map(key => {
                         return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]} />
@@ -42,18 +42,20 @@ const Contact = ({ contactTitle, contactValue }) => {
     )
 }
 
-const CardProfile = ({saveProfile,...props}) => {
+const CardProfile = ({ saveProfile, ...props }) => {
     const [editMode, setEditMode] = useState(false);
 
     const onSubmit = (formData) => {
         saveProfile(formData)
+        setEditMode(false)
     }
     return (
         <div className="">
             <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} />
             {editMode
-                ? <CardProfileInfoForm  onSubmit={onSubmit}/>
-                : <CardProfileInfo goToEditMode={() => { setEditMode(true) }} profile={props.profile} isOwner={props.isOwner} />}
+                ? <CardProfileInfoForm initialValues={props.profile} onSubmit={onSubmit} profile={props.profile} />
+                : <CardProfileInfo goToEditMode={() => { setEditMode(true) }} profile={props.profile} isOwner={props.isOwner} />
+            }
         </div>
     )
 };
