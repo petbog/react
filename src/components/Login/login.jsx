@@ -10,7 +10,7 @@ import { Redirect } from "react-router-dom";
 
 const MaxLength40 = maxLengthCreator(40)
 
-const LoginForm = ({ handleSubmit, error }) => {
+const LoginForm = ({ handleSubmit, error, captchaUrl }) => {
    return (
       <div className="">
          <form onSubmit={handleSubmit}>
@@ -21,12 +21,17 @@ const LoginForm = ({ handleSubmit, error }) => {
             {createField('Password', 'password', Input, [required, MaxLength40], { type: 'password' })}
             {/* <Field placeholder={'Password'} component={Input} validate={[required, MaxLength40]} name={'password'} type={'password'} /> */}
 
-            {createField(null, 'remember me', Input, [], {type:"checkbox"},'remember me')}
+            {createField(null, 'remember me', Input, [], { type: "checkbox" }, 'remember me')}
             {/* <Field type={"checkbox"} component={Input} validate={[required, MaxLength40]} name={'rememberMe'} /> remember me */}
 
             {error && <div className={classes.formSummaryError}>{error}</div>}
             <div className="">
+
+               {captchaUrl && <img src={captchaUrl} alt="captchaUrl" />}
+               {captchaUrl && createField('Simbols from imafe', 'captcha', Input, [required])}
+
                <button>Login</button>
+
             </div>
          </form>
       </div>
@@ -37,7 +42,7 @@ const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm)
 
 const Login = (props) => {
    const onSubmit = (formData) => {
-      props.login(formData.email, formData.password, formData.rememberMe);
+      props.login(formData.email, formData.password, formData.rememberMe,formData.captcha );
    }
    if (props.isAuth) {
       return <Redirect to={'/ItemList'} />
@@ -45,12 +50,13 @@ const Login = (props) => {
    return (
       <div className="">
          <h1>Login</h1>
-         <LoginReduxForm onSubmit={onSubmit} />
+         <LoginReduxForm captchaUrl={props.captchaUrl} onSubmit={onSubmit} />
       </div>
    )
 }
 
 const mapStateToProps = (state) => ({
+   captchaUrl: state.auth.captchaUrl,
    isAuth: state.auth.isAuth,
 })
 
