@@ -3,7 +3,7 @@ import './App.css';
 import NavBar from './components/NavBar/NavBar';
 import ItemListContainer from './components/ItemList/ItemListContainer';
 import UsersContainer from './components/users/UsersContainer';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/login';
 import { connect, Provider } from 'react-redux';
@@ -28,21 +28,24 @@ class App extends React.Component {
       <Preloader />
     }
     return (
-      <div className='app-wrapper'>
-        < HeaderContainer />
-        <div className='wrapper_item_list'>
-          < NavBar />
-          <Route path='/ItemList/:userId?' render={() => <ItemListContainer />} />
-          <Route path='/Messages' render={() => {
-            return <Suspense fallback={<div>Loading...</div>}>
-              <MessagesContainer />
-            </Suspense>
-          }} />
-          <Route path='/Music' render={withSuspens(Music)} />
-          <Route path='/Users' render={() => <UsersContainer />} />
-          <Route path='/Login' render={() => <Login />} />
+      <Switch>
+        <div className='app-wrapper'>
+          < HeaderContainer />
+          <div className='wrapper_item_list'>
+            < NavBar />
+        <Route path='/' render={() => <Redirect to={"/ItemList"} />} />
+            <Route path='/ItemList/:userId?' render={() => <ItemListContainer />} />
+            <Route path='/Messages' render={() => {
+              return <Suspense fallback={<div>Loading...</div>}>
+                <MessagesContainer />
+              </Suspense>
+            }} />
+            <Route path='/Music' render={withSuspens(Music)} />
+            <Route path='/Users' render={() => <UsersContainer />} />
+            <Route path='/Login' render={() => <Login />} />
+          </div>
         </div>
-      </div>
+      </Switch>
     );
   }
 }
