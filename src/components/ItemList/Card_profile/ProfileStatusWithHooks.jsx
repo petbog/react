@@ -19,6 +19,11 @@ const ProfileStatusWithHooks = (props) => {
         setEditMode(false);
         props.updateStatus(status)
     };
+    //на случай типизации e
+    // let onStatusChange=(e:ChangeEvent<HTMLInputElement>)=>{ 
+    //     setStatus(e.currentTarget.value);
+    // }
+
 
     let onStatusChange=(e)=>{
         setStatus(e.currentTarget.value);
