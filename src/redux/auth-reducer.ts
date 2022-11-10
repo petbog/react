@@ -1,5 +1,5 @@
 import { stopSubmit } from 'redux-form';
-import { authAPI, securityAPI } from '../API/api';
+import { authAPI, ResultCodesCaptcha, ResultCodesEnum, securityAPI } from '../API/api';
 import { ThunkAction } from 'redux-thunk';
 import { AppStateType } from './redux-store';
 
@@ -74,9 +74,9 @@ type ThunkType = ThunkAction<Promise<void>, AppStateType , unknown, ActionType>
 
 export let getAuthUserData = ():ThunkType => {
     return async (dispatch) => {
-        let response = await authAPI.me()
-        if (response.data.resultCode === 0) {
-            let { email, id, login } = response.data.data;
+        let meData = await authAPI.me()
+        if (meData.resultCode === ResultCodesEnum.success) {
+            let { email, id, login } = meData.data;
             dispatch(setUserData(email, id, login, true));
         }
     }
@@ -84,14 +84,14 @@ export let getAuthUserData = ():ThunkType => {
 export const login = (email: string, password: string, rememberMe: boolean, captcha: any) => {
     return async (dispatch: any) => {
 
-        let response = await authAPI.login(email, password, rememberMe, captcha)
-        if (response.data.resultCode === 0) {
+        let LoginData = await authAPI.login(email, password, rememberMe, captcha)
+        if (LoginData.resultCode === 0) {
             dispatch(getAuthUserData())
         } else {
-            if (response.data.resultCode === 10) {
+            if (LoginData.resultCode === ResultCodesCaptcha.error) {
                 dispatch(getCaptchaUrl())
             }
-            let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Somme error';
+            let message = LoginData.messages.length > 0 ? LoginData.messages[0] : 'Somme error';
             dispatch(stopSubmit('login', { _error: message }))
         }
     }
@@ -99,8 +99,8 @@ export const login = (email: string, password: string, rememberMe: boolean, capt
 
 export const logout = ():ThunkType => {
     return async (dispatch) => {
-        let response = await authAPI.logout()
-        if (response.data.resultCode === 0) {
+        let LogoutData = await authAPI.logout()
+        if (LogoutData.resultCode === ResultCodesEnum.success) {
             dispatch(setUserData(null, null, null, false));
         }
     }
