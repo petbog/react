@@ -1,9 +1,10 @@
 import { Dispatch } from "react";
 import { ThunkAction } from "redux-thunk";
-import { usersAPI } from "../API/api";
 import { photosType, usersType } from "../types/types";
-import { ActionsTypes, AppStateType } from "./redux-store";
+import { InferActionsTypes, AppStateType, BaseThunkType } from "./redux-store";
 // import { updateObjectInArrau } from "../components/utils/validators/objects-helpers";
+import { usersAPI } from './../API/users-api';
+import { FormAction } from 'redux-form';
 
 //константы можно не указывать т.к ts сам их сделает 
 
@@ -25,7 +26,6 @@ let InitialState = {
 
 }
 
-export type InitialStateType = typeof InitialState
 
 const UsersReducer = (state = InitialState, action: ActionTypes): InitialStateType => {
     switch (action.type) {
@@ -79,7 +79,7 @@ const UsersReducer = (state = InitialState, action: ActionTypes): InitialStateTy
     }
 }
 
-type ActionTypes = ActionsTypes<typeof actions>
+
 
 //as const воспринимались как константы
 
@@ -101,8 +101,13 @@ export default UsersReducer;
 
 type GetStateType = () => AppStateType
 type DispatchTypes = Dispatch<ActionTypes>
-type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionTypes>
 
+//типизация actions
+type ActionTypes = InferActionsTypes<typeof actions>
+//типизация initialState
+export type InitialStateType = typeof InitialState
+//типизация thunk,baseThunk находится в redux-store
+type ThunkType = BaseThunkType<ActionTypes | FormAction>
 
 export let requestUsers = (currentPage: number, pageSize: number): ThunkType => {
     return async (dispatch) => {
