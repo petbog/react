@@ -24,7 +24,6 @@ const AddNewPostForm = (props) => {
 
 let PostReduxForm = reduxForm({ form: 'ProfileAddNewPostForm' })(AddNewPostForm)
 
-
 const ItemList = (props) => {
     let Post = props.posts
         .map(p => <Comment comment={p.message} key={p.id} />)

@@ -1,10 +1,10 @@
-import { Action, applyMiddleware, combineReducers, compose, createStore } from "redux";
+import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import profileReducer from './profilePage-reducer';
 import messagesReducer from './messagesPage-reducer';
 import NavBarReducer from './NavBarPage-reducer';
 import UsersReducer from "./users-reducer";
 import AuthReducer from "./auth-reducer";
-import thunkMiddleware, { ThunkAction } from 'redux-thunk';
+import thunkMiddleware from 'redux-thunk';
 import { reducer as formReducer } from 'redux-form';
 import appReducer from "./app-reducer";
 
@@ -32,13 +32,7 @@ type PropertiesTypes<T> = T extends { [key: string]: infer U } ? U : never
 
 //extends {[key: string]: (...args: any[]) => any} приравнивание что вернется только функция
 
-export type InferActionsTypes<T extends { [key: string]: (...args: any[]) => any }> = ReturnType<PropertiesTypes<T>>
-
-
-
-
-export type BaseThunkType<A extends Action, R = Promise<void>> = ThunkAction<R, AppStateType, unknown, A>
-
+export type ActionsTypes<T extends {[key: string]: (...args: any[]) => any}> = ReturnType<PropertiesTypes<T>>
 
 
 
