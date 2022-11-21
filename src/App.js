@@ -41,7 +41,7 @@ class App extends React.Component {
               </Suspense>
             }} />
             <Route path='/Music' render={withSuspens(Music)} />
-            <Route path='/Users' render={() => <UsersContainer  pageTitle={'Самураи'}/>} />
+            <Route path='/Users' render={() => <UsersContainer />} />
             <Route path='/Login' render={() => <Login />} />
           </div>
         </div>
