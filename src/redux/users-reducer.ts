@@ -22,14 +22,14 @@ let InitialState = {
 
 export type InitialStateType = typeof InitialState
 
-const UsersReducer = (state = InitialState, action: ActionTypes): InitialStateType => {
+const UsersReducer = (state = InitialState, action: any): InitialStateType => {
     switch (action.type) {
         case FOLLOW:
             return {
                 ...state,
                 // users:updateObjectInArrau(state.users,action.userId,'id', {followed: true} )
                 users: state.users.map(u => {
-                    if (u.id === action.userId  ) {
+                    if (u.id === action.userId) {
                         return { ...u, followed: true }
                     }
                     return u;
@@ -74,7 +74,6 @@ const UsersReducer = (state = InitialState, action: ActionTypes): InitialStateTy
     }
 }
 
-type ActionTypes =  followSuccessType | unfollowSuccessType | setUsersType | setCurrentPageType |  setTotalUsersCountType | toggleIsFetchingType | toggleFollowingProgressType
 type followSuccessType = {
     type: typeof FOLLOW
     userId: number
@@ -95,12 +94,14 @@ type setCurrentPageType={
     currentPage:number
 }
 export let setCurrentPage = (currentPage:number):setCurrentPageType => ({ type: SET_CURRENT_PAGE, currentPage });
-
+type countType={
+    totalUsersCount:number
+}
 type setTotalUsersCountType={
     type:typeof SET_TOTAL_USERS_COUNT
-    count: number
+    count: countType
 }
-export let setTotalUsersCount = (totalUsersCount:number):setTotalUsersCountType => ({ type: SET_TOTAL_USERS_COUNT, count: totalUsersCount });
+export let setTotalUsersCount = (totalUsersCount:countType):setTotalUsersCountType => ({ type: SET_TOTAL_USERS_COUNT, count: totalUsersCount });
 type toggleIsFetchingType={
     type:typeof TOGGLE_IS_FETCHING
     isFetching:boolean
@@ -111,7 +112,7 @@ type toggleFollowingProgressType={
     isFetching:boolean
     userId:number
 }
-export let toggleFollowingProgress = (isFetching:boolean, userId:number):toggleFollowingProgressType => ({ type: TOGGLE_IS_FOLOWING_IN_PROGRESS, isFetching, userId })
+export let toggleFollowingProgress = (isFetching:boolean, userId:number) => ({ type: TOGGLE_IS_FOLOWING_IN_PROGRESS, isFetching, userId })
 
 
 

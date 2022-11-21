@@ -23,7 +23,7 @@ let Paginator:React.FC<propsType> = ({ totalUsersCount, pageSize, onPageChanged,
     }
 
     let portionsCount = Math.ceil(pagesCount / portionsSize);
-    let [portionsNumber, setPortionsNumber] = useState<number>(1);
+    let [portionsNumber, setPortionsNumber] = useState(1);
     let leftPortionsPageNumber = (portionsNumber - 1) * portionsSize + 1;
     let rightPortionsPageNumber = portionsNumber * portionsSize;
 
