@@ -23,7 +23,7 @@ const addMessageForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div className={classes.Messag_text_box}>
-                <Field component={Textarea} validate={[required, MaxLength40]} placeholder={"new message"} name={'NewMessageBody'} />
+                <Field component={Textarea} validate={[required,MaxLength40]} placeholder={"new message"} name={'NewMessageBody'} />
                 <button className={classes.Messag_text_button}>Отправить</button>
             </div>
         </form>
@@ -35,7 +35,7 @@ const MessagesReduxForm = reduxForm({ form: 'dialogAddMessageForm' })(addMessage
 const Messages = (props) => {
     let state = props.messagesPage
     let NewMessage = state.MessagesData
-        .map(message => <DialogMessages text={message.message} key={message.key} />)
+        .map(message => <DialogMessages text={message.message} key={message.id} />)
 
     let NewDialog = state.DialogsData
         .map(dialog => <DialogItem name={dialog.name} key={dialog.id} id={dialog.id} />)
@@ -53,8 +53,8 @@ const Messages = (props) => {
             </div>
             <div className={classes.Messag_inner}>
                 <div className={classes.Messag_inner_box}>
+                    {NewMessage}
                     <div className={classes.Messag_text}>
-                        {NewMessage}
                     </div>
                 </div>
                 <MessagesReduxForm onSubmit={addNewMessag} />
