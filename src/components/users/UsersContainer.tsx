@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { follow, unfollow,  requestUsers } from "../../redux/users-reducer";
+import { follow, unfollow, setCurrentPage, toggleFollowingProgress, requestUsers } from "../../redux/users-reducer";
 import React from "react";
 import Users from "./Users";
 import Preloader from "../common/preloader/preloader";
@@ -82,7 +82,7 @@ let mapStateToProps = (state: AppStateType): mapStateToPropsType => {
 export default compose(
     //TStateProps = {}, TDispatchProps = {}, TOwnProps = {}, State = DefaultState
     //<mapStateToPropsType,mapDispatchTopropsType,ownProps,PropsType>
-    connect(mapStateToProps, { follow, unfollow, requestUsers, }),
+    connect(mapStateToProps, { follow, unfollow, setCurrentPage, toggleFollowingProgress, requestUsers, }),
     withAuthRedirect
     // @ts-ignore
 )(UsersContainer)

@@ -81,7 +81,7 @@ export let getAuthUserData = ():ThunkType => {
         }
     }
 }
-export const login = (email: string, password: string, rememberMe: boolean, captcha: string) => {
+export const login = (email: string, password: string, rememberMe: boolean, captcha: any) => {
     return async (dispatch: any) => {
 
         let LoginData = await authAPI.login(email, password, rememberMe, captcha)

@@ -24,19 +24,6 @@ let reducers = combineReducers({
 type RootReduserType = typeof reducers
 export type AppStateType = ReturnType<RootReduserType>
 
-//мы получаем ключь [key: string] и выводим его значение для  автоматического определения тима actions-created
-
-type PropertiesTypes<T> = T extends { [key: string]: infer U } ? U : never
-
-//ReturnType может принимать только функцию 
-
-//extends {[key: string]: (...args: any[]) => any} приравнивание что вернется только функция
-
-export type ActionsTypes<T extends {[key: string]: (...args: any[]) => any}> = ReturnType<PropertiesTypes<T>>
-
-
-
-
 //подключение расширения в хроме
 // @ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
