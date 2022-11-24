@@ -18,7 +18,7 @@ const messagesReducer = (state = initialState, action) => {
     switch (action.type) {
 
         case SEND_MESSAGE:
-            let body = action.newMessageBody;// косяк тут 
+            let body = action.NewMessageBody;// косяк тут 
             debugger;
             return{ ...state,
                 MessagesData: [...state.MessagesData,{ id: 4, message: body }]   

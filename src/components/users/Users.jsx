@@ -1,11 +1,12 @@
 import React from "react";
 import classes from "./Users.module.css";
 import user from "../../assets/images/user.png";
-import { NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Paginator from "../common/Paginator/Paginator";
+import UsersSearchForm from './UsersSearchFormik';
 
 
-let Users = ({ currentPage,onPageChanged,totalUsersCount,pageSize,users,...props}) => {
+let Users = ({ currentPage, onPageChanged, totalUsersCount, pageSize, users, ...props }) => {
 
     // let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
 
@@ -19,18 +20,18 @@ let Users = ({ currentPage,onPageChanged,totalUsersCount,pageSize,users,...props
 
     return (
         <div className={classes.wrapper}>
+            <div className="">
+                <UsersSearchForm OnFilterChanget={props.OnFilterChanget} />
+            </div>
+
             <Paginator currentPage={currentPage}
-             onPageChanged={onPageChanged} 
-             pageSize={pageSize} 
-             totalUsersCount={totalUsersCount}/>
-            {/* <div>
-                {pages.map(p => {
-                    return <span key={p.id} className={props.currentPage === p && classes.selectedPage}
-                        onClick={(e) => { props.onPageChanged(p); }}> {p}</span>
-                })}
-            </div> */}
-            { 
-            // 90 урок разделение на user (пока делать не стал)
+                onPageChanged={onPageChanged}
+                pageSize={pageSize}
+                totalUsersCount={totalUsersCount} />
+
+            {
+
+
                 users.map(u => <div className={classes.wrapper_user} key={u.id}>
                     <div className={classes.img_wrapper}>
                         <NavLink to={'/ItemList/' + u.id}>
@@ -59,5 +60,8 @@ let Users = ({ currentPage,onPageChanged,totalUsersCount,pageSize,users,...props
         </div>
     )
 }
+
+
+
 
 export default Users

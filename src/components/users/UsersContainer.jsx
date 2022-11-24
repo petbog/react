@@ -6,18 +6,23 @@ import Preloader from "../common/preloader/preloader";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { compose } from "redux";
 import { getCurrentPage, getFolowingInProgress, getIsFetching, getPageSize, getTotalUsersCount, getUsers } from "../../redux/Users-selected";
+import { getFilters } from './../../redux/Users-selected';
 
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        let { currentPage, pageSize } = this.props
-
-        this.props.requestUsers(currentPage, pageSize);
+        let { currentPage, pageSize,filter } = this.props
+        this.props.getUsers(currentPage, pageSize, filter);
 
     }
     onPageChanged = (pageNumber) => {
-        let { pageSize } = this.props
-        this.props.requestUsers(pageNumber, pageSize);
+        let { pageSize,filter } = this.props
+        this.props.getUsers(pageNumber, pageSize,filter);
+    }
+
+    OnFilterChanget = (filter) => {
+        let {  pageSize } = this.props
+        this.props.getUsers(1, pageSize, filter);
     }
     render() {
         return <>
@@ -32,8 +37,7 @@ class UsersContainer extends React.Component {
                 toggleFollowingProgress={this.props.toggleFollowingProgress}
                 folowingInProgress={this.props.folowingInProgress}
                 isAuth={this.props.isAuth}
-
-
+                OnFilterChanget={this.OnFilterChanget}
             />
         </>
     }
@@ -43,6 +47,7 @@ let mapStateToProps = (state) => {
     return {
         users: getUsers(state),
         pageSize: getPageSize(state),
+        filter: getFilters(state),
         totalUsersCount: getTotalUsersCount(state),
         currentPage: getCurrentPage(state),
         isFetching: getIsFetching(state),
@@ -51,7 +56,7 @@ let mapStateToProps = (state) => {
 };
 
 export default compose(
-    connect(mapStateToProps, { follow, unfollow, setCurrentPage, toggleFollowingProgress, requestUsers, }),
+    connect(mapStateToProps, { follow, unfollow, setCurrentPage, toggleFollowingProgress, getUsers:requestUsers, }),
     withAuthRedirect
 )(UsersContainer)
 
