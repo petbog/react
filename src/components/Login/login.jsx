@@ -1,6 +1,6 @@
 import React from "react";
 import classes from './Login.module.css';
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { reduxForm } from "redux-form";
 import { createField, Input } from "../common/preloader/FormsControls/FormsControls";
 import { maxLengthCreator, required } from "../utils/validators/validators";
@@ -16,13 +16,8 @@ const LoginForm = ({ handleSubmit, error, captchaUrl }) => {
          <form onSubmit={handleSubmit}>
 
             {createField('Email', 'email', Input, [required, MaxLength40])}
-            {/* <Field placeholder={'Email'} component={Input} validate={[required, MaxLength40]} name={'email'} /> */}
-
             {createField('Password', 'password', Input, [required, MaxLength40], { type: 'password' })}
-            {/* <Field placeholder={'Password'} component={Input} validate={[required, MaxLength40]} name={'password'} type={'password'} /> */}
-
             {createField(null, 'remember me', Input, [], { type: "checkbox" }, 'remember me')}
-            {/* <Field type={"checkbox"} component={Input} validate={[required, MaxLength40]} name={'rememberMe'} /> remember me */}
 
             {error && <div className={classes.formSummaryError}>{error}</div>}
             <div className="">
@@ -40,24 +35,24 @@ const LoginForm = ({ handleSubmit, error, captchaUrl }) => {
 
 const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm)
 
-const Login = (props) => {
+
+
+export const Login = React.memo((props) => {
+   const captchaUrl = useSelector(state => state.auth.captchaUrl)
+   const isAuth = useSelector(state => state.auth.isAuth)
+
+   const dispatch = useDispatch()
+
    const onSubmit = (formData) => {
-      props.login(formData.email, formData.password, formData.rememberMe,formData.captcha );
+      dispatch(login(formData.email, formData.password, formData.rememberMe, formData.captcha));
    }
-   if (props.isAuth) {
+   if (isAuth) {
       return <Redirect to={'/ItemList'} />
    }
    return (
       <div className="">
          <h1>Login</h1>
-         <LoginReduxForm captchaUrl={props.captchaUrl} onSubmit={onSubmit} />
+         <LoginReduxForm captchaUrl={captchaUrl} onSubmit={onSubmit} />
       </div>
    )
-}
-
-const mapStateToProps = (state) => ({
-   captchaUrl: state.auth.captchaUrl,
-   isAuth: state.auth.isAuth,
 })
-
-export default connect(mapStateToProps, { login })(Login);
